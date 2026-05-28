@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+  background: rgba(10, 10, 18, 0.97);
+  border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+  box-shadow: 0 2px 30px rgba(0, 245, 255, 0.08);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00f5ff, #ff00aa, transparent);
+}
+.header-left { display: flex; align-items: baseline; gap: 6px; }
+.header-logo {
+  font-family: 'Orbitron', monospace;
+  font-size: 20px; font-weight: 900;
+  color: #00f5ff;
+  text-shadow: 0 0 14px #00f5ff, 0 0 28px rgba(0,245,255,0.4);
+  letter-spacing: 4px;
+}
+.header-logo-sub {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px; color: #ff00aa;
+  text-shadow: 0 0 10px #ff00aa; letter-spacing: 3px;
+}
+.header-center { flex: 1; display: flex; justify-content: center; }
+.level-badge {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(0,245,255,0.05);
+  border: 1px solid rgba(0,245,255,0.15);
+  border-radius: 2px; padding: 6px 14px;
+}
+.level-rank {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px; font-weight: 700;
+  color: #ffee00; text-shadow: 0 0 8px #ffee00;
+  letter-spacing: 2px; min-width: 72px;
+}
+.xp-bar-wrap {
+  width: 120px; height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px; overflow: hidden;
+}
+.xp-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00f5ff, #ff00aa);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 8px #00f5ff;
+}
+.xp-label {
+  font-size: 10px; color: rgba(0,245,255,0.6);
+  letter-spacing: 1px; min-width: 50px; text-align: right;
+}
+.header-right { display: flex; align-items: center; gap: 12px; }
+.stat-chip {
+  display: flex; flex-direction: column; align-items: center;
+  background: rgba(255,238,0,0.05);
+  border: 1px solid rgba(255,238,0,0.2);
+  border-radius: 2px; padding: 4px 10px; min-width: 48px;
+}
+.stat-label { font-size: 8px; color: rgba(255,238,0,0.6); letter-spacing: 2px; }
+.stat-value {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px; font-weight: 700;
+  color: #ffee00; text-shadow: 0 0 6px #ffee00;
+}
+.user-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,0,170,0.07);
+  border: 1px solid rgba(255,0,170,0.25);
+  border-radius: 2px; padding: 5px 12px;
+}
+.user-avatar {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: linear-gradient(135deg, #ff00aa, #00f5ff);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 900;
+  color: #0a0a12; flex-shrink: 0;
+}
+.user-name {
+  font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 700;
+  color: #ff00aa; text-shadow: 0 0 8px #ff00aa; letter-spacing: 1px;
+  max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.status-chip {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid rgba(0,255,136,0.2); border-radius: 2px;
+}
+.status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--status-color, #00ff88);
+  box-shadow: 0 0 6px var(--status-color, #00ff88);
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.status-text { font-size: 9px; color: var(--status-color, #00ff88); letter-spacing: 2px; }
