@@ -1,0 +1,49 @@
+.Message {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  animation: slideIn 0.2s ease;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.Message.me     { align-self: flex-end;   align-items: flex-end; }
+.Message.other  { align-self: flex-start; align-items: flex-start; }
+.Message.system { align-self: center; max-width: 90%; }
+
+.msg-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.msg-author {
+  font-family: 'Orbitron', monospace;
+  font-size: 9px; font-weight: 700; letter-spacing: 1px;
+}
+.Message.me    .msg-author { color: #00f5ff; }
+.Message.other .msg-author { color: #ff00aa; }
+.msg-time { font-size: 9px; color: rgba(255,255,255,0.25); letter-spacing: 1px; }
+
+.msg-bubble {
+  padding: 10px 16px;
+  font-size: 13px; line-height: 1.6;
+  letter-spacing: 0.5px; word-break: break-word;
+}
+.Message.me .msg-bubble {
+  background: rgba(0,245,255,0.1);
+  border: 1px solid rgba(0,245,255,0.35);
+  color: #e0f8ff;
+  box-shadow: 0 0 12px rgba(0,245,255,0.1);
+  border-radius: 2px 2px 0 2px;
+}
+.Message.other .msg-bubble {
+  background: rgba(255,0,170,0.08);
+  border: 1px solid rgba(255,0,170,0.25);
+  color: #ffe0f5;
+  box-shadow: 0 0 12px rgba(255,0,170,0.08);
+  border-radius: 2px 2px 2px 0;
+}
+.Message.system .msg-bubble {
+  background: rgba(255,238,0,0.06);
+  border: 1px solid rgba(255,238,0,0.2);
+  color: rgba(255,238,0,0.7);
+  font-size: 11px; letter-spacing: 2px; text-align: center;
+  border-radius: 2px;
+}
