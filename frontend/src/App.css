@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --neon-cyan:   #00f5ff;
+  --neon-pink:   #ff00aa;
+  --neon-green:  #00ff88;
+  --neon-yellow: #ffee00;
+  --bg-deep:     #0a0a12;
+  --bg-panel:    #0f0f1e;
+  --bg-card:     #14142a;
+  --border-glow: rgba(0, 245, 255, 0.3);
+  --text-primary: #e0e8ff;
+  --text-dim:     #4a5a7a;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-deep);
+  margin: 0;
+  padding: 0;
+  font-family: 'Share Tech Mono', monospace;
+  overflow: hidden;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(0, 245, 255, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(255, 0, 170, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 90%, rgba(0, 255, 136, 0.03) 0%, transparent 50%),
+    var(--bg-deep);
+  overflow: hidden;
+  position: relative;
+}
+
+/* CRT Scanlines */
+.App::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Corner decorations */
+.App::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  border: 1px solid rgba(0, 245, 255, 0.06);
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* ── LOGIN SCREEN ─────────────────────────────────────────────────── */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(0, 245, 255, 0.06) 0%, transparent 60%),
+    var(--bg-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+.login-box {
+  background: var(--bg-panel);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  box-shadow:
+    0 0 60px rgba(0, 245, 255, 0.12),
+    0 0 120px rgba(0, 245, 255, 0.05),
+    inset 0 0 60px rgba(0, 245, 255, 0.02);
+  border-radius: 4px;
+  padding: 52px 60px;
+  text-align: center;
+  min-width: 400px;
+  position: relative;
+
+  /* Corner brackets */
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: var(--neon-cyan);
+    border-style: solid;
+    opacity: 0.6;
+  }
+  &::before {
+    top: 10px; left: 10px;
+    border-width: 2px 0 0 2px;
+  }
+  &::after {
+    bottom: 10px; right: 10px;
+    border-width: 0 2px 2px 0;
+  }
+
+  .logo-text {
+    font-family: 'Orbitron', monospace;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 24px var(--neon-cyan), 0 0 60px rgba(0, 245, 255, 0.3);
+    letter-spacing: 8px;
+    margin-bottom: 8px;
+    animation: logo-flicker 4s ease-in-out infinite;
+  }
+
+  .login-sub {
+    color: var(--text-dim);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 44px;
+  }
+
+  input {
+    background: rgba(0, 245, 255, 0.05);
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    border-radius: 2px;
+    color: var(--neon-cyan);
+    font-family: 'Orbitron', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    padding: 14px 18px;
+    width: 100%;
+    outline: none;
+    margin-bottom: 14px;
+    transition: all 0.2s;
+    text-align: center;
+
+    &::placeholder { color: var(--text-dim); letter-spacing: 1px; }
+
+    &:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.25);
+      background: rgba(0, 245, 255, 0.08);
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    font-family: 'Orbitron', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--neon-cyan);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+    }
+
+    span { position: relative; z-index: 1; }
+
+    &:hover {
+      color: var(--bg-deep);
+      box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
+      &::before { transform: scaleX(1); }
+    }
+
+    &:active { transform: scale(0.98); }
+  }
+}
+
+@keyframes logo-flicker {
+  0%, 94%, 96%, 98%, 100% { opacity: 1; }
+  95%, 97%                 { opacity: 0.7; }
+}
