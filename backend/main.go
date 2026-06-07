@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/TutorialEdge/realtime-chat-go-react/pkg/websocket"
 )
@@ -16,7 +17,6 @@ func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
 	}
 
 	client := &websocket.Client{
-		// Assign a unique ID using the remote address so clients are identifiable.
 		ID:   r.RemoteAddr,
 		Conn: conn,
 		Pool: pool,
@@ -38,7 +38,14 @@ func setupRoutes() {
 func main() {
 	fmt.Println("Distributed Chat App v0.01")
 	setupRoutes()
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	fmt.Println("Starting server on port:", port)
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		fmt.Println("Server error:", err)
 	}
 }
